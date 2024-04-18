@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>FastAPI OAuth</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+            width: auto;
+        }
+    </style>
+</head>
+
+<body>
+<h1>FastAPI OAuth</h1>
+{% if email %}
+<h2>You are logged in as:</h2
+<p>{{ email }}</p>
+
+{% if openid_payload %}
+<h2>OIDC:</h2>
+<pre style="">{{ openid_payload | pretty_json }}</pre>
+{% endif %}
+
+{% if user_info %}
+<h2>User Info:</h2>
+<pre style="">{{ user_info | pretty_json }}</pre>
+{% endif %}
+<a href="/logout">Logout</a>
+{% else %}
+
+<h2>You are not logged in</h2>
+<a href="/authorize">Login</a>
+{% endif %}
+
+</body>
+<script src="//unpkg.com/jwt-js-decode@1.8.2/dist/jwt-js-decode.pkg.min.js"></script>
+</html>
